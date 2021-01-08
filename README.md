@@ -1,0 +1,3 @@
+Basic Syntax to Minecraft datapack compiler
+
+The idea sprung from the creation of multiple datapacks, and the unnecessary amount of repeat in code. While it may be rather simple in form, it actually holds the possibility to be the form for any datapack made so far, save the tags, recipes, etc. I might improve on it someday, for example adding the abililty to have references to other files such as said tags and recipes and set their filepath. But for now, it is just an attempt at my own compiler in a format that I am familiar with.
