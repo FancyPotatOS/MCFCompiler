@@ -1,0 +1,17 @@
+
+rule name compassall ;
+
+rule description My datapack ;
+
+var constant ;
+
+func killall
+{
+	run kill @a endrun
+}
+
+func loadme 
+{
+	run say hello! endrun
+	constant = lit 0 ;
+}

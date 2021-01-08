@@ -1,0 +1,117 @@
+﻿
+		Plain Code To Minecraft Datapack Compiler Format
+
+
+	Variable declaration
+
+There are two types of variables capable in Minecraft's current scoreboard system
+
+Type one: Variables		(var)
+		Variables are stored in a dummy scoreboard <namespace>Var (For example, if your namespace is 'try', it
+	will be stored in tryVar). These are useful to define constants or general variables, but do not 
+	relate to any specific entity.
+
+Type two: Designated	(desig)
+		Designated variables are assigned to entities. The desig is basically an objective, since it stores
+	values for specific entities, and no constants.
+
+Declaring 
+		All variables will be initialized to 0, specifically to avoid 'not assigned' errors that may occur. You 
+	must declare the variable before changing its value. When assigning a scoreboard value of a player, 
+	keep in mind that assigning a desig to a desig is from the same entity in context, for example 
+	
+	(Assuming player_health and player_points are desigs with values for each player, or some players)
+	desig player_score ;
+	player_score += player_health ;
+	player_score += player_points ;
+
+	each player_score would be equal to their own health plus their own points, and there would be no crossover 
+	between players.
+
+Syntax
+	var [varname] ;
+	[varname] [=, +=, -=, *=, /=, or %=] [lit literal, varname] ;
+
+
+	desig [scoreboardname] [criteria] ;
+	[scoreboardname] [=, +=, -=, *=, /=, or %=] [lit literal, varname, desig] ;
+
+
+
+	Context Changes
+
+		The change in context really is everything placed inside 'execute run' command. This helps with 
+	conditions and storing values.
+	
+Syntax
+	context [execute conditions]
+	{
+		[regular code]
+	}
+	
+Example
+	context if score @s life matches 10..
+	{
+		run kill @s endrun
+	}
+	(This would kill the player if their 'life' score is higher than 10.
+	The direct translation to a command is 'execute if score @s life matches 10.. run kill @s')
+
+
+
+	Running command
+		Allows you to run a specific command verbatim
+
+Syntax
+	run [command to be input] endrun
+
+Example
+	run tp @s 100 10 100 endrun
+
+
+
+	Function call
+		Allows you to call a function declared before this function
+
+Syntax
+	call [function name] ;
+
+Example
+	func killall
+	{
+		run kill @a endrun
+	}
+
+	func check
+	{
+		context if @p[distance=..10]
+		{
+			call killall ;
+		}
+	}
+
+
+
+	Rules
+
+The rules define the datapack's base format.
+
+Type one: Description	(description)
+	This is the text that appears when mousing over the datapack name in /datapack list
+
+Syntax
+	rule description [any length string] ;
+
+
+Type two: Name	(name)
+	Sets the namespace that all the functions are grouped in, as well as the variable name holder
+
+Syntax
+	rule name [text] ;
+
+
+Type three: Configuration
+	Will tag the function with either load or tick in /data/minecraft/tags/functions/
+
+Syntax
+	rule [load, tick] [function] ;
