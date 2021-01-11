@@ -115,3 +115,7 @@ Type three: Configuration
 
 Syntax
 	rule [load, tick] [function] ;
+	
+	
+Syntax Tree
+	Note that everything in square brackets [] are to be replaced with its respective values. For example, [funcname] should be replaced with a defined function name, including the function currently in. Context adds a 'execute .. run' to the beginning of the command, and shares the same branches as 'func'

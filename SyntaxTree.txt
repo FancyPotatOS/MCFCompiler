@@ -1,0 +1,36 @@
+﻿MCFCompiler Syntax Tree
+
+.
+├── var [varname] ;
+├── desig [designame] [criteria] ;
+├── rule/
+│   ├── description [description] ;
+│   ├── name [text] ;
+│   └── [load, tick] [funcname] ;
+└── func [funcname] {
+    ├── run [command] endrun
+    ├── [varname] [=, +=, -=, *=, /=, %=] [lit [literal], varname] ;
+    ├── [designame] [=, +=, -=, *=, /=, or %=] [lit [literal], varname, designame] ;
+    ├── context [execute conditions] {
+    │   ├── [everything in 'func' branch, inclusive]
+    │   └── }
+    ├── call [funcname] ;
+    └── }
+	
+	
+RAW IN https://tree.nathanfriend.io/:
+var [varname] ;
+desig [designame] [criteria] ;
+rule
+  description [description] ;
+  name [text] ;
+  [load, tick] [funcname] ;
+func [funcname] {
+  run [command] endrun
+  [varname] [=, +=, -=, *=, /=, %=] [lit [literal], varname] ;
+  [designame] [=, +=, -=, *=, /=, or %=] [lit [literal], varname, designame] ;
+  context [execute conditions] {
+    [everything in 'func' branch, inclusive]
+    }
+  call [funcname] ;
+  }
